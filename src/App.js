@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import Projects from './components/Projects'
+import AddProjects from './components/AddProjects'
 import './App.css';
 
 class App extends Component {
   
   constructor(){
     super();
-
     this.state = {
       projects: []
     }
   }
 
   componentWillMount(){
+
     this.setState({projects:[
       {
         title: "Digital Crafts",
@@ -30,6 +31,15 @@ class App extends Component {
     
   }
 
+  handleAddProject(project){
+    console.log("what is being sent to us")
+    console.log(project)
+
+    let projects  = this.state.projects;
+    projects.push(project);
+    this.setState({projects:projects})
+  }
+
   render() {
 
     console.log(this.state)
@@ -37,6 +47,7 @@ class App extends Component {
     return (
       <div >
         <Projects projects={this.state.projects} />
+        <AddProjects addProjects={this.handleAddProject.bind(this)} />
       </div>
     );
   }
